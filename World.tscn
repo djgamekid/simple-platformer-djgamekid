@@ -1,0 +1,278 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Terrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World.gd" type="Script" id=3]
+[ext_resource path="res://assets/getKey.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/PNG/Default (64px)/card_lift.png" type="Texture" id=5]
+[ext_resource path="res://assets/PNG/Default (64px)/card_down.png" type="Texture" id=6]
+[ext_resource path="res://assets/Tiles/tile_0151.png" type="Texture" id=7]
+[ext_resource path="res://assets/Tiles/tile_0152.png" type="Texture" id=8]
+[ext_resource path="res://Coin.gd" type="Script" id=9]
+[ext_resource path="res://assets/Tiles/tile_0071.png" type="Texture" id=10]
+[ext_resource path="res://Ladder.gd" type="Script" id=11]
+[ext_resource path="res://assets/Tiles/tile_0027.png" type="Texture" id=12]
+[ext_resource path="res://Key.gd" type="Script" id=13]
+[ext_resource path="res://Door.gd" type="Script" id=14]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/Coin 3.wav" type="AudioStream" id=16]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 588, 18.5 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 4.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+
+[sub_resource type="RectangleShape2D" id=8]
+
+[sub_resource type="RectangleShape2D" id=9]
+
+[sub_resource type="RectangleShape2D" id=10]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 28, 30 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 8.49998, 126.5 )
+
+[sub_resource type="RectangleShape2D" id=12]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="AddJump" type="Area2D" parent="."]
+position = Vector2( 2128, 48 )
+
+[node name="JumpAnimation" type="AnimatedSprite" parent="AddJump"]
+frames = SubResource( 2 )
+frame = 1
+playing = true
+
+[node name="JumpCollision" type="CollisionShape2D" parent="AddJump"]
+scale = Vector2( 3, 3 )
+shape = SubResource( 5 )
+
+[node name="Terrain" parent="." instance=ExtResource( 1 )]
+position = Vector2( 6, 0 )
+scale = Vector2( 3, 3 )
+tile_data = PoolIntArray( -524231, 0, 393226, -458700, 0, 65538, -458699, 0, 65538, -458698, 0, 65538, -458697, 0, 65538, -458696, 0, 65538, -458695, 0, 65538, -458694, 0, 65538, -458693, 0, 65538, -393164, 0, 65540, -393163, 0, 65540, -393162, 0, 65540, -393161, 0, 65540, -393160, 0, 65540, -393159, 0, 65540, -393158, 0, 65540, -393157, 0, 65540, -327628, 0, 65540, -327627, 0, 65540, -327626, 0, 65540, -327625, 0, 65540, -327624, 0, 65540, -327623, 0, 65540, -327622, 0, 65540, -327621, 0, 65540, -262098, 0, 458765, -262097, 0, 458766, -262096, 0, 458766, -262095, 0, 458767, -262092, 0, 65540, -262091, 0, 65540, -262090, 0, 65540, -262089, 0, 65540, -262088, 0, 65540, -262087, 0, 65540, -262086, 0, 65540, -262085, 0, 65540, -196556, 0, 65540, -196555, 0, 65540, -196554, 0, 65540, -196553, 0, 65540, -196552, 0, 65540, -196551, 0, 65540, -196550, 0, 65540, -196549, 0, 65540, -131068, 0, 1, -131020, 0, 65540, -131019, 0, 65540, -131018, 0, 65540, -131017, 0, 65540, -131016, 0, 65540, -131015, 0, 65540, -131014, 0, 65540, -131013, 0, 65540, -65532, 0, 1, -65513, 0, 2, -65512, 0, 2, -65511, 0, 2, -65510, 0, 2, -65495, 0, 458765, -65494, 0, 458766, -65493, 0, 458766, -65492, 0, 458767, -65484, 0, 65540, -65483, 0, 65540, -65482, 0, 65540, -65481, 0, 65540, -65480, 0, 65540, -65479, 0, 65540, -65478, 0, 65540, -65477, 0, 65540, 4, 0, 1, 65540, 0, 1, 65550, 0, 13, 65551, 0, 12, 65552, 0, 12, 65553, 0, 12, 65554, 0, 12, 131076, 0, 1, 131088, 0, 65548, 196612, 0, 1, 196624, 0, 65548, 262148, 0, 65538, 262149, 0, 65538, 262150, 0, 65538, 262151, 0, 65538, 262152, 0, 65538, 262153, 0, 65538, 262154, 0, 65538, 262155, 0, 65538, 262156, 0, 65538, 262157, 0, 65538, 262158, 0, 65538, 262159, 0, 65538, 262160, 0, 65538, 262161, 0, 65538, 262162, 0, 65549, 262163, 0, 65549, 262164, 0, 65549, 262165, 0, 65549, 262166, 0, 65549, 262167, 0, 65549, 262168, 0, 65549, 262169, 0, 65549, 262170, 0, 65549, 262171, 0, 65549, 262172, 0, 65549, 262173, 0, 2, 262174, 0, 2, 262175, 0, 2, 262176, 0, 2, 262177, 0, 2, 262178, 0, 2, 262179, 0, 2, 262180, 0, 2, 327684, 0, 4, 327685, 0, 4, 327686, 0, 4, 327687, 0, 4, 327688, 0, 4, 327689, 0, 4, 327690, 0, 4, 327691, 0, 4, 327692, 0, 4, 327693, 0, 4, 327694, 0, 4, 327695, 0, 4, 327696, 0, 4, 327697, 0, 4, 327698, 0, 196621, 327699, 0, 196621, 327700, 0, 196621, 327701, 0, 196621, 327702, 0, 196621, 327703, 0, 196621, 327704, 0, 196621, 327705, 0, 196621, 327706, 0, 196621, 327707, 0, 196621, 327708, 0, 196621, 327709, 0, 4, 327710, 0, 4, 327711, 0, 4, 327712, 0, 4, 327713, 0, 4, 327714, 0, 4, 327715, 0, 4, 327716, 0, 4, 393220, 0, 4, 393221, 0, 4, 393222, 0, 4, 393223, 0, 4, 393224, 0, 4, 393225, 0, 4, 393226, 0, 4, 393227, 0, 4, 393228, 0, 4, 393229, 0, 4, 393230, 0, 4, 393231, 0, 4, 393232, 0, 4, 393233, 0, 4, 393234, 0, 196621, 393235, 0, 196621, 393236, 0, 196621, 393237, 0, 196621, 393238, 0, 196621, 393239, 0, 196621, 393240, 0, 196621, 393241, 0, 196621, 393242, 0, 196621, 393243, 0, 196621, 393244, 0, 196621, 393245, 0, 4, 393246, 0, 4, 393247, 0, 4, 393248, 0, 4, 393249, 0, 4, 393250, 0, 4, 393251, 0, 4, 393252, 0, 4, 393266, 0, 65538, 393267, 0, 65538, 393268, 0, 65538, 393269, 0, 65538, 393270, 0, 65538, 393271, 0, 65538, 393272, 0, 65538, 393273, 0, 65538, 393274, 0, 65538, 393275, 0, 65538, 393276, 0, 65538, 393277, 0, 65538, 393278, 0, 65538, 393279, 0, 65538, 458756, 0, 4, 458757, 0, 4, 458758, 0, 4, 458759, 0, 4, 458760, 0, 4, 458761, 0, 4, 458762, 0, 4, 458763, 0, 4, 458764, 0, 4, 458765, 0, 4, 458766, 0, 4, 458767, 0, 4, 458768, 0, 4, 458769, 0, 4, 458770, 0, 196621, 458771, 0, 196621, 458772, 0, 196621, 458773, 0, 196621, 458774, 0, 196621, 458775, 0, 196621, 458776, 0, 196621, 458777, 0, 196621, 458778, 0, 196621, 458779, 0, 196621, 458780, 0, 196621, 458781, 0, 4, 458782, 0, 4, 458783, 0, 4, 458784, 0, 4, 458785, 0, 4, 458786, 0, 4, 458787, 0, 4, 458788, 0, 4, 458802, 0, 65540, 458803, 0, 65540, 458804, 0, 65540, 458805, 0, 65540, 458806, 0, 65540, 458807, 0, 65540, 458808, 0, 65540, 458809, 0, 65540, 458810, 0, 65540, 458811, 0, 65540, 458812, 0, 65540, 458813, 0, 65540, 458814, 0, 65540, 458815, 0, 65540, 524292, 0, 4, 524293, 0, 4, 524294, 0, 4, 524295, 0, 4, 524296, 0, 4, 524297, 0, 4, 524298, 0, 4, 524299, 0, 4, 524300, 0, 4, 524301, 0, 4, 524302, 0, 4, 524303, 0, 4, 524304, 0, 4, 524305, 0, 4, 524306, 0, 196621, 524307, 0, 196621, 524308, 0, 196621, 524309, 0, 196621, 524310, 0, 196621, 524311, 0, 196621, 524312, 0, 196621, 524313, 0, 196621, 524314, 0, 196621, 524315, 0, 196621, 524316, 0, 196621, 524317, 0, 4, 524318, 0, 4, 524319, 0, 4, 524320, 0, 4, 524321, 0, 4, 524322, 0, 4, 524323, 0, 4, 524324, 0, 4, 524338, 0, 65540, 524339, 0, 65540, 524340, 0, 65540, 524341, 0, 65540, 524342, 0, 65540, 524343, 0, 65540, 524344, 0, 65540, 524345, 0, 65540, 524346, 0, 65540, 524347, 0, 65540, 524348, 0, 65540, 524349, 0, 65540, 524350, 0, 65540, 524351, 0, 65540, 589828, 0, 4, 589829, 0, 4, 589830, 0, 4, 589831, 0, 4, 589832, 0, 4, 589833, 0, 4, 589834, 0, 4, 589835, 0, 4, 589836, 0, 4, 589837, 0, 4, 589838, 0, 4, 589839, 0, 4, 589840, 0, 4, 589841, 0, 4, 589842, 0, 196621, 589843, 0, 196621, 589844, 0, 196621, 589845, 0, 196621, 589846, 0, 196621, 589847, 0, 196621, 589848, 0, 196621, 589849, 0, 196621, 589850, 0, 196621, 589851, 0, 196621, 589852, 0, 196621, 589853, 0, 4, 589854, 0, 4, 589855, 0, 4, 589856, 0, 4, 589857, 0, 4, 589858, 0, 4, 589859, 0, 4, 589860, 0, 4, 589874, 0, 65540, 589875, 0, 65540, 589876, 0, 65540, 589877, 0, 65540, 589878, 0, 65540, 589879, 0, 65540, 589880, 0, 65540, 589881, 0, 65540, 589882, 0, 65540, 589883, 0, 65540, 589884, 0, 65540, 589885, 0, 65540, 589886, 0, 65540, 589887, 0, 65540, 655364, 0, 4, 655365, 0, 4, 655366, 0, 4, 655367, 0, 4, 655368, 0, 4, 655369, 0, 4, 655370, 0, 4, 655371, 0, 4, 655372, 0, 4, 655373, 0, 4, 655374, 0, 4, 655375, 0, 4, 655376, 0, 4, 655377, 0, 4, 655378, 0, 196621, 655379, 0, 196621, 655380, 0, 196621, 655381, 0, 196621, 655382, 0, 196621, 655383, 0, 196621, 655384, 0, 196621, 655385, 0, 196621, 655386, 0, 196621, 655387, 0, 196621, 655388, 0, 196621, 655410, 0, 65540, 655411, 0, 65540, 655412, 0, 65540, 655413, 0, 65540, 655414, 0, 65540, 655415, 0, 65540, 655416, 0, 65540, 655417, 0, 65540, 655418, 0, 65540, 655419, 0, 65540, 655420, 0, 65540, 655421, 0, 65540, 655422, 0, 65540, 655423, 0, 65540, 720914, 0, 196621, 720915, 0, 196621, 720916, 0, 196621, 720917, 0, 196621, 720918, 0, 196621, 720919, 0, 196621, 720920, 0, 196621, 720921, 0, 196621, 720922, 0, 196621, 720923, 0, 196621, 720924, 0, 196621, 720946, 0, 65540, 720947, 0, 65540, 720948, 0, 65540, 720949, 0, 65540, 720950, 0, 65540, 720951, 0, 65540, 720952, 0, 65540, 720953, 0, 65540, 720954, 0, 65540, 720955, 0, 65540, 720956, 0, 65540, 720957, 0, 65540, 720958, 0, 65540, 720959, 0, 65540, 786482, 0, 65540, 786483, 0, 65540, 786484, 0, 65540, 786485, 0, 65540, 786486, 0, 65540, 786487, 0, 65540, 786488, 0, 65540, 786489, 0, 65540, 786490, 0, 65540, 786491, 0, 65540, 786492, 0, 65540, 786493, 0, 65540, 786494, 0, 65540, 786495, 0, 65540, 852018, 0, 65540, 852019, 0, 65540, 852020, 0, 65540, 852021, 0, 65540, 852022, 0, 65540, 852023, 0, 65540, 852024, 0, 65540, 852025, 0, 65540, 852026, 0, 65540, 852027, 0, 65540, 852028, 0, 65540, 852029, 0, 65540, 852030, 0, 65540, 852031, 0, 65540, 917554, 0, 65540, 917555, 0, 65540, 917556, 0, 65540, 917557, 0, 65540, 917558, 0, 65540, 917559, 0, 65540, 917560, 0, 65540, 917561, 0, 65540, 917562, 0, 65540, 917563, 0, 65540, 917564, 0, 65540, 917565, 0, 65540, 917566, 0, 65540, 917567, 0, 65540 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 309, 137 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+
+[node name="HUD" parent="Player/Camera2D" instance=ExtResource( 15 )]
+
+[node name="KillPlane" type="Area2D" parent="."]
+position = Vector2( 1369, 293 )
+scale = Vector2( 0.5, 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlane"]
+position = Vector2( -198, 14.1667 )
+shape = SubResource( 1 )
+
+[node name="KillPlane2" type="Area2D" parent="."]
+position = Vector2( 2110, 573 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlane2"]
+shape = SubResource( 1 )
+
+[node name="KillPlane3" type="Area2D" parent="."]
+position = Vector2( 4053, 573 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlane3"]
+shape = SubResource( 1 )
+
+[node name="Coin 1" type="Area2D" parent="."]
+position = Vector2( 3000, 300 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 9 )
+
+[node name="CoinAnim" type="AnimatedSprite" parent="Coin 1"]
+frames = SubResource( 3 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin 1"]
+scale = Vector2( 0.6, 0.6 )
+shape = SubResource( 7 )
+
+[node name="Coin 2" type="Area2D" parent="."]
+position = Vector2( 2800, 300 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 9 )
+
+[node name="CoinAnim" type="AnimatedSprite" parent="Coin 2"]
+frames = SubResource( 3 )
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin 2"]
+scale = Vector2( 0.6, 0.6 )
+shape = SubResource( 7 )
+
+[node name="Coin 3" type="Area2D" parent="."]
+position = Vector2( 2900, 300 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 9 )
+
+[node name="CoinAnim" type="AnimatedSprite" parent="Coin 3"]
+frames = SubResource( 3 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin 3"]
+scale = Vector2( 0.6, 0.6 )
+shape = SubResource( 8 )
+
+[node name="Coin 4" type="Area2D" parent="."]
+position = Vector2( 3100, 300 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 9 )
+
+[node name="CoinAnim" type="AnimatedSprite" parent="Coin 4"]
+frames = SubResource( 3 )
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin 4"]
+scale = Vector2( 0.6, 0.6 )
+shape = SubResource( 9 )
+
+[node name="Coin 5" type="Area2D" parent="."]
+position = Vector2( 3200, 300 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 9 )
+
+[node name="CoinAnim" type="AnimatedSprite" parent="Coin 5"]
+frames = SubResource( 3 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin 5"]
+scale = Vector2( 0.6, 0.6 )
+shape = SubResource( 10 )
+
+[node name="Door" type="Area2D" parent="."]
+position = Vector2( 3111, -404 )
+script = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+shape = SubResource( 13 )
+
+[node name="Ladder" type="Area2D" parent="."]
+position = Vector2( 3280, 303 )
+scale = Vector2( 3, 3 )
+z_index = -1
+script = ExtResource( 11 )
+
+[node name="Sprite" type="Sprite" parent="Ladder"]
+texture = ExtResource( 10 )
+
+[node name="Sprite2" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -18 )
+texture = ExtResource( 10 )
+
+[node name="Sprite3" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -36 )
+texture = ExtResource( 10 )
+
+[node name="Sprite4" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -54 )
+texture = ExtResource( 10 )
+
+[node name="Sprite5" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -72 )
+texture = ExtResource( 10 )
+
+[node name="Sprite6" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -90 )
+texture = ExtResource( 10 )
+
+[node name="Sprite7" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -108 )
+texture = ExtResource( 10 )
+
+[node name="Sprite8" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -126 )
+texture = ExtResource( 10 )
+
+[node name="Sprite9" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -144 )
+texture = ExtResource( 10 )
+
+[node name="Sprite10" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -162 )
+texture = ExtResource( 10 )
+
+[node name="Sprite11" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -180 )
+texture = ExtResource( 10 )
+
+[node name="Sprite12" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -196 )
+texture = ExtResource( 10 )
+
+[node name="Sprite13" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -214 )
+texture = ExtResource( 10 )
+
+[node name="Sprite14" type="Sprite" parent="Ladder"]
+position = Vector2( 0, -232 )
+texture = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder"]
+position = Vector2( -0.5, -115.833 )
+shape = SubResource( 11 )
+
+[node name="Key" type="Area2D" parent="."]
+position = Vector2( 2977, -392 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 13 )
+
+[node name="Sprite" type="Sprite" parent="Key"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Key"]
+scale = Vector2( 0.9, 0.6 )
+shape = SubResource( 12 )
+
+[node name="getCoin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+
+[node name="getKey" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="display_victory" from="." to="Player/Camera2D/HUD" method="_on_World_display_victory"]
+[connection signal="body_entered" from="AddJump" to="Player" method="_on_AddJump_body_entered"]
+[connection signal="body_entered" from="KillPlane" to="." method="_on_KillPlane_body_entered"]
+[connection signal="body_entered" from="KillPlane2" to="." method="_on_KillPlane_body_entered"]
+[connection signal="body_entered" from="KillPlane3" to="." method="_on_KillPlane_body_entered"]
+[connection signal="body_entered" from="Coin 1" to="Coin 1" method="_on_Coin_1_body_entered"]
+[connection signal="body_entered" from="Coin 2" to="Coin 2" method="_on_Coin_2_body_entered"]
+[connection signal="body_entered" from="Coin 3" to="Coin 3" method="_on_Coin_3_body_entered"]
+[connection signal="body_entered" from="Coin 4" to="Player" method="_on_Coin_4_body_entered"]
+[connection signal="body_entered" from="Coin 4" to="Coin 4" method="_on_Coin_4_body_entered"]
+[connection signal="body_entered" from="Coin 5" to="Player" method="_on_Coin_5_body_entered"]
+[connection signal="body_entered" from="Coin 5" to="Coin 5" method="_on_Coin_5_body_entered"]
+[connection signal="body_entered" from="Door" to="Door" method="_on_Door_body_entered"]
+[connection signal="victory" from="Door" to="." method="_on_Door_victory"]
+[connection signal="body_entered" from="Ladder" to="Ladder" method="_on_Ladder_body_entered"]
+[connection signal="body_exited" from="Ladder" to="Ladder" method="_on_Ladder_body_exited"]
+[connection signal="body_entered" from="Key" to="Key" method="_on_Key_body_entered"]
